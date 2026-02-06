@@ -37,7 +37,7 @@ print(statisticalSummary) """
 print(missingValues) """
 
 # 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas. Explique todos los resultados.
-quantitativeVars = [
+""" quantitativeVars = [
     "budget", "revenue", "runtime", "popularity",
     "voteAvg", "voteCount", "genresAmount",
     "productionCoAmount", "productionCountriesAmount",
@@ -50,13 +50,13 @@ multiValueQualitativeVars = [
     "productionCountry",
     "productionCompanyCountry",
     "actorsCharacter"
-]
+] """
 
-simpleQualitativeVars = [
+""" simpleQualitativeVars = [
     "originalLanguage",
     "video",
     "director"
-]
+] """
 
 # Histogramas
 """ for var in quantitativeVars:
@@ -77,10 +77,10 @@ simpleQualitativeVars = [
     print(f"{var}: estadístico={stat:.4f}, p-valor={p:.4f}") """
 
 # Tablas de frecuencias - variables cualitativas
-frequencyTables = {}
-
+""" frequencyTables = {}
+ """
 # Valores simples
-for var in simpleQualitativeVars:
+""" for var in simpleQualitativeVars:
     freqAbs = df[var].value_counts(dropna=False)
     freqRel = df[var].value_counts(normalize=True, dropna=False) * 100
 
@@ -92,7 +92,7 @@ for var in simpleQualitativeVars:
     frequencyTables[var] = freqTable
 
     print(f"\nTabla de frecuencias: {var}")
-    print(freqTable.head(10))
+    print(freqTable.head(10)) """
 
 # Valores multivariables
 """ for var in multiValueQualitativeVars:
@@ -117,3 +117,4 @@ for var in simpleQualitativeVars:
 
     print(f"\nTabla de frecuencias (separado por '|'): {var}")
     print(freqTable.head(10)) """
+
