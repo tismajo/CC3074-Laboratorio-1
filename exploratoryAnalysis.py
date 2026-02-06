@@ -167,3 +167,27 @@ plt.ylabel("Cantidad")
 plt.show()
 
 print("Año con más películas:", movies_per_year.idxmax()) """
+
+#4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico. ¿A qué género principal pertenecen las películas más largas? 
+# 20 películas más recientes
+""" recent_genres = (
+    df.sort_values("releaseDate", ascending=False)
+      .head(20)["mainGenre"]
+)
+print("Las 20 películas más recientes son:\n", recent_genres.value_counts())
+ """
+# genero predominante
+""" genre_counts = df["mainGenre"].value_counts()
+
+plt.figure(figsize=(8,4))
+genre_counts.head(10).plot(kind="bar")
+plt.title("Género principal predominante")
+plt.show() """
+
+# género de las películas más largas.
+""" long_movies = (
+    df.sort_values("runtime", ascending=False)
+        .head(20)["mainGenre"]
+)
+print("El género de las películas más largas es:\n", long_movies.value_counts())
+ """
