@@ -216,10 +216,11 @@ actors_over_time = (
 
 actors_over_time.plot()
 plt.title("Promedio de actores por año")
-plt.show() """
+plt.show()
+ """
 
 #4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
- """ sns.scatterplot(
+""" sns.scatterplot(
     data=df,
     x="castWomenAmount",
     y="revenue",
@@ -232,8 +233,7 @@ sns.scatterplot(
     label="Hombres"
 )
 plt.legend()
-plt.show() 
-"""
+plt.show() """
 
 #4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas? 
 """ top_directors = (
@@ -285,7 +285,7 @@ plt.show()
 print(df[["voteAvg", "revenue"]].corr()) """
 
 #4.15 ¿Qué estrategias de marketing, como videos promocionales o páginas oficiales, generan mejores resultados? 
-df["video_clean"] = df["video"].fillna(False)
+""" df["video_clean"] = df["video"].fillna(False)
 marketing_video = (
     df.groupby("video_clean")["revenue"]
       .agg(["count", "mean", "median"])
@@ -300,6 +300,43 @@ marketing_homepage = (
       .agg(["count", "mean", "median"])
 )
 
-print(marketing_homepage) 
+print(marketing_homepage) """
+
 
 # 4.16 ¿La popularidad del elenco está directamente correlacionada con el éxito de taquilla? 
+def mean_actor_popularity(value):
+    if pd.isna(value):
+        return np.nan
+
+    # Caso en que el valor ya sea numérico (error de parsing del CSV)
+    if isinstance(value, (int, float)):
+        return float(value)
+
+    # Caso normal: string con valores separados por '|'
+    values = []
+    for v in str(value).split("|"):
+        try:
+            values.append(float(v))
+        except:
+            pass
+
+    return np.mean(values) if len(values) > 0 else np.nan
+
+df["avgActorPopularity"] = df["actorsPopularity"].apply(mean_actor_popularity)
+df_popularity = df[["avgActorPopularity", "revenue"]].dropna()
+
+# Correlación
+correlation = df_popularity.corr()
+print(correlation)
+sns.scatterplot(
+    data=df_popularity,
+    x="avgActorPopularity",
+    y="revenue",
+    alpha=0.5
+)
+plt.title("Popularidad promedio del elenco vs ingresos")
+plt.xlabel("Popularidad promedio del elenco")
+plt.ylabel("Ingresos")
+plt.show()
+
+
