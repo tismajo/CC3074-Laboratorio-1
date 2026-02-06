@@ -118,3 +118,28 @@ multiValueQualitativeVars = [
     print(f"\nTabla de frecuencias (separado por '|'): {var}")
     print(freqTable.head(10)) """
 
+# 4 Responda las siguientes preguntas:
+df["releaseDate"] = pd.to_datetime(df["releaseDate"], errors="coerce")
+df["releaseMonth"] = df["releaseDate"].dt.month
+df["mainGenre"] = (
+    df["genres"]
+    .astype(str)
+    .str.split("|")
+    .str[0]
+)
+
+# 4.1 ¿Cuáles son las 10 películas que contaron con más presupuest?
+""" top_budget = (
+    df.sort_values("budget", ascending=False)
+        .loc[:, ["title", "budget"]]
+        .head(10)
+)
+print(top_budget) """
+
+# 4.2 ¿Cuáles son las 10 películas que más ingresos tuvieron?
+""" top_revenue = (
+    df.sort_values("revenue", ascending=False)
+        .loc[:, ["title", "revenue"]]
+        .head(10)
+)
+print(top_revenue) """
