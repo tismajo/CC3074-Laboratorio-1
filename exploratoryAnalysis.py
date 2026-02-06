@@ -191,3 +191,30 @@ plt.show() """
 )
 print("El género de las películas más largas es:\n", long_movies.value_counts())
  """
+
+# 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias? 
+""" genre_revenue = (
+    df.groupby("mainGenre")["revenue"]
+      .mean()
+      .sort_values(ascending=False)
+)
+
+print(genre_revenue.head(10)) """
+
+# 4.8 Cantidad de actores vs ingresos + tendencia temporal
+sns.scatterplot(
+    data=df,
+    x="actorsAmount",
+    y="revenue"
+)
+plt.title("Cantidad de actores vs ingresos")
+plt.show()
+
+actors_over_time = (
+    df.groupby("releaseYear")["actorsAmount"].mean()
+)
+
+actors_over_time.plot()
+plt.title("Promedio de actores por año")
+plt.show()
+
