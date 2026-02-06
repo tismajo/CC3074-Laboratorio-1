@@ -143,3 +143,27 @@ print(top_budget) """
         .head(10)
 )
 print(top_revenue) """
+
+# 4.3 ¿Cuál es la película que más votos tuvo?
+""" most_votes = df.loc[df["voteCount"].idxmax(), ["title", "voteCount"]]
+print(most_votes) """
+
+# 4.4 ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios? 
+""" worst_movie = (
+    df[df["voteCount"] > 50]
+    .sort_values("voteAvg")
+    .iloc[0][["title", "voteAvg", "voteCount"]]
+)
+print(worst_movie) """
+
+# 4.5 ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras  
+""" movies_per_year = df["releaseYear"].value_counts().sort_index()
+
+plt.figure(figsize=(10,5))
+movies_per_year.plot(kind="bar")
+plt.title("Cantidad de películas por año")
+plt.xlabel("Año")
+plt.ylabel("Cantidad")
+plt.show()
+
+print("Año con más películas:", movies_per_year.idxmax()) """
