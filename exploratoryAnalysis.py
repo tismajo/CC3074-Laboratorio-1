@@ -285,6 +285,21 @@ plt.show()
 print(df[["voteAvg", "revenue"]].corr()) """
 
 #4.15 ¿Qué estrategias de marketing, como videos promocionales o páginas oficiales, generan mejores resultados? 
+df["video_clean"] = df["video"].fillna(False)
+marketing_video = (
+    df.groupby("video_clean")["revenue"]
+      .agg(["count", "mean", "median"])
+)
 
+print(marketing_video)
+
+df["hasHomepage"] = df["homePage"].notna()
+
+marketing_homepage = (
+    df.groupby("hasHomepage")["revenue"]
+      .agg(["count", "mean", "median"])
+)
+
+print(marketing_homepage) 
 
 # 4.16 ¿La popularidad del elenco está directamente correlacionada con el éxito de taquilla? 
