@@ -219,7 +219,7 @@ plt.title("Promedio de actores por año")
 plt.show() """
 
 #4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
-sns.scatterplot(
+ """ sns.scatterplot(
     data=df,
     x="castWomenAmount",
     y="revenue",
@@ -233,3 +233,23 @@ sns.scatterplot(
 )
 plt.legend()
 plt.show() 
+"""
+
+#4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas? 
+""" top_directors = (
+    df.sort_values("voteAvg", ascending=False)
+      .head(20)["director"]
+)
+
+print(top_directors.value_counts()) """
+
+# 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión 
+sns.scatterplot(
+    data=df,
+    x="budget",
+    y="revenue"
+)
+plt.title("Presupuesto vs ingresos")
+plt.show()
+
+print(df[["budget", "revenue"]].corr()) 
