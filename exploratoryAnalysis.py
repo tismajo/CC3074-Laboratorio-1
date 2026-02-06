@@ -272,3 +272,19 @@ print(movies_per_month.mean())
 
 print("Meses con mayores ingresos:")
 print(monthly_revenue.sort_values(ascending=False)) """
+
+#4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial? 
+""" sns.scatterplot(
+    data=df,
+    x="voteAvg",
+    y="revenue"
+)
+plt.title("Calificación vs ingresos")
+plt.show()
+
+print(df[["voteAvg", "revenue"]].corr()) """
+
+#4.15 ¿Qué estrategias de marketing, como videos promocionales o páginas oficiales, generan mejores resultados? 
+
+
+# 4.16 ¿La popularidad del elenco está directamente correlacionada con el éxito de taquilla? 
