@@ -85,3 +85,57 @@ plt.show()
 
 print(genre_runtime.head(10)) """
 
+# 5.5 ¿La concentración de ingresos está dominada por un grupo reducido de películas?
+
+""" # Distribución de ingresos
+plt.figure(figsize=(7,5))
+sns.histplot(df["revenue"], bins=50)
+plt.title("Distribución de ingresos")
+plt.xlabel("Ingresos")
+plt.ylabel("Frecuencia")
+plt.show()
+
+# Porcentaje acumulado
+revenue_sorted = df["revenue"].sort_values(ascending=False)
+cum_revenue = revenue_sorted.cumsum() / revenue_sorted.sum()
+
+plt.figure(figsize=(7,5))
+plt.plot(cum_revenue.values)
+plt.title("Concentración acumulada de ingresos")
+plt.xlabel("Películas ordenadas por ingresos")
+plt.ylabel("Porcentaje acumulado")
+plt.show()
+
+print("El 10% de películas genera:",
+      round(cum_revenue.iloc[int(0.1*len(cum_revenue))]*100,2),
+      "% de los ingresos") """
+
+#5.6 ¿La presencia de valores faltantes afecta ciertos tipos de películas más que otros?
+
+""" # Conteo de valores faltantes por película
+df["missingCount"] = df.isna().sum(axis=1)
+
+# Relación con presupuesto
+plt.figure(figsize=(7,5))
+sns.scatterplot(
+    data=df,
+    x="budget",
+    y="missingCount"
+)
+plt.xscale("log")
+plt.title("Presupuesto vs cantidad de valores faltantes")
+plt.xlabel("Presupuesto")
+plt.ylabel("Valores faltantes")
+plt.show()
+
+# Relación con año
+missing_by_year = (
+    df.groupby("releaseYear")["missingCount"]
+      .mean()
+)
+
+missing_by_year.plot(figsize=(9,5))
+plt.title("Promedio de valores faltantes por año")
+plt.xlabel("Año")
+plt.ylabel("Valores faltantes promedio")
+plt.show() """
