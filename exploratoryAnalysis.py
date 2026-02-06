@@ -202,7 +202,7 @@ print("El género de las películas más largas es:\n", long_movies.value_counts
 print(genre_revenue.head(10)) """
 
 # 4.8 Cantidad de actores vs ingresos + tendencia temporal
-sns.scatterplot(
+""" sns.scatterplot(
     data=df,
     x="actorsAmount",
     y="revenue"
@@ -216,5 +216,20 @@ actors_over_time = (
 
 actors_over_time.plot()
 plt.title("Promedio de actores por año")
-plt.show()
+plt.show() """
 
+#4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
+sns.scatterplot(
+    data=df,
+    x="castWomenAmount",
+    y="revenue",
+    label="Mujeres"
+)
+sns.scatterplot(
+    data=df,
+    x="castMenAmount",
+    y="revenue",
+    label="Hombres"
+)
+plt.legend()
+plt.show() 
