@@ -304,7 +304,7 @@ print(marketing_homepage) """
 
 
 # 4.16 ¿La popularidad del elenco está directamente correlacionada con el éxito de taquilla? 
-""" def mean_actor_popularity(value):
+def mean_actor_popularity(value):
     if pd.isna(value):
         return np.nan
 
@@ -339,5 +339,4 @@ plt.xlabel("Popularidad promedio del elenco")
 plt.ylabel("Ingresos")
 plt.show()
 
- """
 
