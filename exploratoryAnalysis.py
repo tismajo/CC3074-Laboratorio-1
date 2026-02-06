@@ -244,7 +244,7 @@ plt.show()
 print(top_directors.value_counts()) """
 
 # 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión 
-sns.scatterplot(
+""" sns.scatterplot(
     data=df,
     x="budget",
     y="revenue"
@@ -252,4 +252,23 @@ sns.scatterplot(
 plt.title("Presupuesto vs ingresos")
 plt.show()
 
-print(df[["budget", "revenue"]].corr()) 
+print(df[["budget", "revenue"]].corr()) """
+
+#4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos? 
+""" monthly_revenue = (
+    df.groupby("releaseMonth")["revenue"].mean()
+) """
+
+"""
+monthly_revenue.plot(kind="bar")
+plt.title("Ingresos promedio por mes")
+plt.show() """
+
+# 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos? ¿cuantas películas, en promedio, se han lanzado por mes?  
+""" movies_per_month = df["releaseMonth"].value_counts().sort_index()
+
+print("Películas promedio por mes:")
+print(movies_per_month.mean())
+
+print("Meses con mayores ingresos:")
+print(monthly_revenue.sort_values(ascending=False)) """
